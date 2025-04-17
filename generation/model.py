@@ -80,10 +80,8 @@ class RetrievalAugmentedGenerator(pl.LightningModule):
         else:
             logger.info(f"Loading the retriever from {ret_ckpt_path}")
             self.retriever = PremiseRetriever.load_hf(
-                ret_ckpt_path, max_seq_length = 1024, device = self.device
-            )#PremiseRetriever.load(
-                #ret_ckpt_path, self.device, freeze=True)
-
+                ret_ckpt_path, max_seq_len = 1024, device = self.device
+            )
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.generator = T5ForConditionalGeneration.from_pretrained(model_name)
 
